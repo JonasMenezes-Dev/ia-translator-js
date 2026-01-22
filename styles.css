@@ -3,6 +3,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
+    -webkit-tap-highlight-color: transparent;
 }
 
 body {
@@ -176,10 +177,9 @@ button:hover {
 
 /* Active - quando clica */
 button:active {
-    transform: scale(0.90);
-    /* encolhe levemente pra efeito de clique */
-    box-shadow: 0 2px 8px rgba(138, 43, 226, 0.3);
-    /* sombra menor */
+    transform: scale(1.3);
+    background-color: #6a0dad;
+    box-shadow: 0 4px 15px rgba(138, 45, 226, 0.5);
 }
 
 .controle {
