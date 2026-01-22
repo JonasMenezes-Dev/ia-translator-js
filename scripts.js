@@ -36,14 +36,25 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
-    const recognition = new SpeechRecognition()
-    recognition.lang = "pt-BR"
-    recognition.continuous = true
-    recognition.interimResults = false
+    let recognition = null;
+    const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+    
+    // Inicializar reconhecimento de voz apenas se disponível
+    if (window.SpeechRecognition || window.webkitSpeechRecognition) {
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
+        recognition = new SpeechRecognition()
+        recognition.lang = "pt-BR"
+        // iOS não suporta bem continuous = true
+        recognition.continuous = !isSafari
+        recognition.interimResults = false
+    }
 
 
     btnGravar.addEventListener("click", () => {
+        if (!recognition) {
+            alert("Reconhecimento de voz não suportado neste navegador");
+            return;
+        }
         if (!ouvindo) {
             ouvindo = true;
             btnGravar.textContent = "parar";
@@ -59,16 +70,29 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log("microfone ativo...")
     };
 
+    recognition.onerror = (event) => {
+        console.error("Erro no reconhecimento de voz:", event.error);
+        ouvindo = false;
+        btnGravar.textContent = "ouvir";
+    };
+
     recognition.onresult = (event) => {
         const TextoFalado = event.results[0][0].transcript
         inputTexto.value = TextoFalado
     };
 
     recognition.onend = () => {
-        if (ouvindo) {
-            recognition.start(); //reinicia o reconhecimento
+        if (ouvindo && !isSafari) {
+            // Apenas reinifia em navegadores que suportam continuous
+            try {
+                recognition.start();
+            } catch (err) {
+                console.error("Erro ao reiniciar reconhecimento:", err);
+                ouvindo = false;
+            }
         } else {
             btnGravar.textContent = "ouvir";
+            ouvindo = false;
             traduzir(); 
         }
     };
@@ -91,13 +115,26 @@ document.addEventListener("DOMContentLoaded", () => {
         const idiomaDestino = selectIdioma.value;
 
         try {
-
             let endereco = "https://api.mymemory.translated.net/get?q="
                 + encodeURIComponent(textoParaTraduzir)
                 + "&langpair=pt|" + idiomaDestino;
 
-            let resposta = await fetch(endereco);
+            let resposta = await fetch(endereco, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+            
+            if (!resposta.ok) {
+                throw new Error(`Erro HTTP: ${resposta.status}`);
+            }
+            
             let dados = await resposta.json();
+
+            if (!dados.responseData || !dados.responseData.translatedText) {
+                throw new Error("Resposta inválida da API");
+            }
 
             escreverDevagar(dados.responseData.translatedText);
             ajustarAlturaTraducao();
@@ -105,7 +142,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         } catch (err) {
             console.error("Erro na tradução:", err);
-            outputTexto.value = "Erro ao traduzir";
+            outputTexto.value = "Erro ao traduzir. Verifique sua conexão.";
         }
     }
     // --------- TEXT TO SPEECH ---------
