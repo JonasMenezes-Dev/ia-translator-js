@@ -11,13 +11,34 @@
 </head>
 
 <body>
+    <header>
+        <h1 class="header">AI Translator</h1>
+    </header>
+
     <div class="caixa-maior">
 
-        <textarea class="input-texto" placeholder="Digite o texto aqui..."></textarea>
+        <textarea class="input-texto" placeholder="Digite ou cole o texto para traduzir"></textarea>
+
+        <div class="resultado">
+
+            <h3 class="titulo-traducao">Tradução</h3>
+            <textarea class="traducao" readonly>A Tradução aparecerá aqui...</textarea>
+
+        </div>
 
         <div class="button">
 
             <select class="idioma-origem">
+                <option value="pt">Português</option>
+                <option value="en">Inglês</option>
+                <option value="de">Alemão</option>
+                <option value="es">Espanhol</option>
+                <option value="fr">Francês</option>
+                <option value="it">Italiano</option>
+                <option value="zh-CN">Mandarim</option>
+            </select>
+
+            <select class="idioma-destino">
                 <option value="pt">Português</option>
                 <option value="en">Inglês</option>
                 <option value="de">Alemão</option>
@@ -37,24 +58,9 @@
                 <img src="img/microfone.svg" alt="Gravar áudio">
             </button>
 
-            <select class="idioma-destino">
-                <option value="pt">Português</option>
-                <option value="en">Inglês</option>
-                <option value="de">Alemão</option>
-                <option value="es">Espanhol</option>
-                <option value="fr">Francês</option>
-                <option value="it">Italiano</option>
-                <option value="zh-CN">Mandarim</option>
-            </select>
 
         </div>
 
-        <div class="resultado">
-
-            <h3 class="titulo-traducao">Tradução</h3>
-            <textarea class="traducao" readonly>A Tradução aparecerá aqui...</textarea>
-
-        </div>
 
 
 </body>

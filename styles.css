@@ -13,31 +13,45 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
+    background: linear-gradient(180deg, #201a0d, #b8782e);
+    animation: fadeUp 1.4s ease-out;
+    
+}
 
-    background: linear-gradient(180deg, #fdeed3, #EFE6DC);
+.header {
+    display: flex;
+    align-items: center;
+    color: goldenrod;
+    font-size: 26px;
+    margin-bottom: 50px;
+    font-weight: bold;
+    animation: float 3s ease-in-out infinite;
 }
 
 /* ================= CAIXA PRINCIPAL ================= */
 .caixa-maior {
     width: 100%;
+    height: 600px;
     max-width: 480px;
     padding: 20px;
-    border-radius: 24px;
+    display: flex;
+    flex-direction: column;
 
-    background: #ffffff;
+    border-radius: 20px;
+    background: linear-gradient(up #3E2C23, #8B5E3C);
     border: 1px solid rgb(247, 227, 184);
-
     box-shadow:
         0 15px 40px rgb(255, 252, 210),
-        inset 0 0 12px rgb(238, 237, 199);
-
+        inset 0 0 12px rgb(247, 246, 228);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    
 }
 
 .caixa-maior:hover {
     transform: translateY(-4px);
     box-shadow:
-        0 22px 55px rgb(255, 254, 176),
+        0 22px 55px rgb(253, 253, 224),
         inset 0 0 16px rgb(255, 255, 255);
 }
 
@@ -55,19 +69,9 @@ body {
     color: #2E2E2E;
 
     font-size: 15px;
-    border-radius: 12px;
+    border-radius: 21px;
 }
 
-/* ================= BARRA DE CONTROLES ================= */
-.button {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 8px;
-
-    margin: 16px 0;
-    flex-wrap: wrap;
-}
 
 /* ================= SELECT ================= */
 .idioma-origem,
@@ -75,7 +79,8 @@ body {
     flex: 1;
     padding: 8px;
     font-size: 14px;
-
+    display: flex;
+    flex-wrap: wrap;
     border-radius: 10px;
     border: 1px solid #e0cebb;
 
@@ -87,26 +92,27 @@ body {
 .button button {
     width: 46px;
     height: 46px;
+    gap: 15px;
 
     border: none;
-    border-radius: 50%;
+    border-radius: 30%;
     cursor: pointer;
 
     display: flex;
     align-items: center;
     justify-content: center;
-
-    background: #f1eae2;
+    
+    background: #4B3621;
     color: #3E2C23;
-
+    
     transition: transform 0.2s ease, background 0.2s ease;
 }
 
 
 @media (hover: hover) and (pointer: fine) {
-     button:hover {
+    button:hover {
         transform: scale(1.08);
-        background: #e0cebb;
+        background: #8B5E3C;
     }
 }
 
@@ -129,30 +135,15 @@ button:active {
     filter: brightness(0) saturate(100%);
 }
 
-@keyframes pulseMic {
-    0% {
-        box-shadow: 0 0 0 0 rgba(231, 201, 165, 0.7);
-        transform: scale(1);
-    }
 
-    70% {
-        box-shadow: 0 0 0 14px rgba(231, 201, 165, 0);
-        transform: scale(1.08);
-    }
-
-    100% {
-        box-shadow: 0 0 0 0 rgba(231, 201, 165, 0);
-        transform: scale(1);
-    }
-}
 
 /* ================= RESULTADO ================= */
 .resultado {
     padding: 14px;
     border-radius: 16px;
-
+    margin: 10px;
     background-color: #e0cebb;
-
+    
 }
 
 .titulo-traducao {
@@ -167,42 +158,99 @@ button:active {
     border: none;
     outline: none;
     resize: none;
-
+    
     color: #8A8A8A;
     font-size: 14px;
     line-height: 1.5;
 }
 
+/* ================= BARRA DE CONTROLES ================= */
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    
+    margin-top: auto;
+    margin: 16px 0;
+    flex-wrap: wrap;
+}
+
+
+/* =================KeyFrames========================*/
+
+@keyframes pulseMic {
+    0% {
+        box-shadow: 0 0 0 0 rgba(231, 201, 165, 0.7);
+        transform: scale(1);
+    }
+    
+    70% {
+        box-shadow: 0 0 0 14px rgba(231, 201, 165, 0);
+        transform: scale(1.08);
+    }
+    
+    100% {
+        box-shadow: 0 0 0 0 rgba(231, 201, 165, 0);
+        transform: scale(1);
+    }
+}
+
+
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-6px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 /* ================= RESPONSIVO CELULAR ================= */
 @media (max-width: 600px) {
-
+    
     body {
         padding: 10px;
     }
-
+    
     .caixa-maior {
         padding: 16px;
         border-radius: 20px;
     }
-
+    
     .input-texto {
         height: 90px;
         font-size: 14px;
     }
-
+    
     .button {
         gap: 6px;
     }
-
+    
     .button button {
         width: 42px;
         height: 42px;
     }
-
+    
     .button button img {
         width: 20px;
     }
-
+    
     .traducao {
         font-size: 13px;
     }
