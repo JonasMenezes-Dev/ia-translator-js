@@ -1,31 +1,16 @@
-# 🌍 Tradutor de Texto (HTML, CSS e JavaScript)
+🌍 AI Voice Translator
+Um tradutor web moderno que utiliza reconhecimento de voz e síntese de fala para facilitar a comunicação entre diferentes idiomas.
 
-Um tradutor simples e responsivo feito com **HTML, CSS e JavaScript puro**, usando uma API pública de tradução.  
-O objetivo do projeto é praticar consumo de API (`fetch`), manipulação do DOM e responsividade.
+✨ Funcionalidades
+🎙️ Reconhecimento de Voz: Fale e o app transcreve automaticamente.
+🔁 Inversão Rápida: Troque os idiomas de origem e destino com um clique.
+🔊 Text-to-Speech: Ouça a tradução com pronúncia nativa.
+📱 Responsivo: Design adaptado para desktop e dispositivos móveis.
+🛠️ Tecnologias
+HTML5 / CSS3 (Flexbox & Grid)
+JavaScript Vanilla (ES6+)
+API MyMemory para traduções.
+Web Speech API para áudio.
+🚀 Como testar
+Acesse o link: https://jonasmenezes-dev.github.io/ia-translator-js/
 
----
-
-## ✅ Funcionalidades
-
-- Tradução de **Português → outros idiomas**
-- Seleção de idioma de destino
-- Interface simples e responsiva
-- Consumo de API com `fetch` + `async/await`
-- Tratamento básico de erro
-
----
-
-## 🚀 Tecnologias usadas
-
-- **HTML5**
-- **CSS3**
-- **JavaScript (Vanilla JS)**
-- **API de tradução** (MyMemory)
----
-
-## 📂 Como usar
-### 1) Baixar o projeto
-Você pode clonar com:
-
-```bash
-git clone : https://github.com/JonasMenezes-Dev
