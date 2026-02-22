@@ -1,16 +1,20 @@
 document.addEventListener("DOMContentLoaded", () => {
-
+    let recognition = null;
+    let ouvindo = false;
+    let timerSilencio = null;
+    
     const inputTexto = document.querySelector(".input-texto");
     const outputTexto = document.querySelector(".traducao");
     const btnGravar = document.getElementById("btnGravar");
     const btnCopiar = document.getElementById("btnCopiar");
+    const btnAudio = document.getElementById("btnAudio");
     const selectOrigem = document.querySelector(".idioma-origem");
     const selectDestino = document.querySelector(".idioma-destino");
 
-    let recognition = null;
-    let ouvindo = false;
-    let timerSilencio = null;
     const tempoSilencio = 700;
+    let debounceTimer = null;
+    const debounceDelay = 500;
+
 
     const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 
@@ -26,8 +30,19 @@ document.addEventListener("DOMContentLoaded", () => {
     el.style.height = el.scrollHeight + 'px';
 }
 
+btnAudio.addEventListener("click", () => {
+    if (outputTexto.value) {
+        falar(outputTexto.value, selectDestino.value);
+    }
+});
+ 
 inputTexto.addEventListener('input', () => {
     autoResize(inputTexto);
+
+    if (debounceTimer) clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(() => {
+        traduzir();
+       }, debounceDelay);
 });
 
     /* ================= MIC ================= */
@@ -93,14 +108,14 @@ inputTexto.addEventListener('input', () => {
             } else {
                 ouvindo = false;
                 btnGravar.classList.remove("gravando");
-                traduzir();
+                traduzir(null, true);
             }
         };
     }
 
     /* ================= TRADUÇÃO ================= */
 
-    async function traduzir(texto = null) {
+    async function traduzir(texto = null, falarResultado = false) {
         const textoFinal = texto || inputTexto.value.trim();
         if (!textoFinal) return;
 
@@ -113,7 +128,9 @@ inputTexto.addEventListener('input', () => {
             const data = await res.json();
 
             escreverDevagar(data.responseData.translatedText);
-            falar(data.responseData.translatedText, destino);
+            if (falarResultado) {
+                falar(data.responseData.translatedText, destino);
+            }
 
         } catch {
             outputTexto.value = "Erro ao traduzir.";
