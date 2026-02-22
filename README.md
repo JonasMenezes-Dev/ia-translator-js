@@ -1,18 +1,43 @@
-# 🌍 AI Voice Translator
+# 🤖 AI Translator
 
-Um tradutor web moderno que utiliza reconhecimento de voz e síntese de fala para facilitar a comunicação entre diferentes idiomas.
+Um tradutor inteligente com reconhecimento de voz, síntese de fala e interface moderna.
+Projeto focado em UX, acessibilidade e boas práticas em JavaScript puro.
 
-## ✨ Funcionalidades
-- 🎙️ **Reconhecimento de Voz:** Fale e o app transcreve automaticamente.
-- 🔁 **Inversão Rápida:** Troque os idiomas de origem e destino com um clique.
-- 🔊 **Text-to-Speech:** Ouça a tradução com pronúncia nativa.
-- 📱 **Responsivo:** Design adaptado para desktop e dispositivos móveis.
+✨ Funcionalidades
 
-## 🛠️ Tecnologias
-- HTML5 / CSS3 (Flexbox & Grid)
-- JavaScript Vanilla (ES6+)
-- [API MyMemory](https://mymemory.translated.net/doc/spec.php) para traduções.
-- Web Speech API para áudio.
+- 🌍 Tradução entre múltiplos idiomas
+- 🎤 Reconhecimento de voz (Speech Recognition)
+- 🔊 Leitura em voz alta do texto traduzido
+- 📋 Copiar tradução com um clique
+- 📱 Layout responsivo (desktop e mobile)
+- 🧠 Inputs com auto-resize (sem scroll desnecessário)
 
-## 🚀 Como testar
-Acesse o link: https://jonasmenezes-dev.github.io/ia-translator-js/
+🛠️ Tecnologias utilizadas
+
+- HTML5 semântico
+- CSS3 (Flexbox, animações e responsividade)
+- JavaScript (ES6+)
+- Web Speech API
+- MyMemory Translation API
+
+🎨 Foco em UX/UI
+
+- Interface limpa e moderna
+- Feedback visual em ações do usuário
+- Animações suaves e não invasivas
+- Layout pensado para uso real
+
+🚀 Como executar
+
+Basta abrir o arquivo `index.html` no navegador.
+
+> Observação: Algumas funcionalidades dependem do suporte do navegador à Web Speech API.
+
+📸 Preview
+
+<img width="1851" height="940" alt="Captura de tela 2026-02-18 023932" src="https://github.com/user-attachments/assets/980e5dee-e872-4eb1-982c-d04c42281fb4" />
+
+
+---
+
+Desenvolvido por Jonas Menezes
