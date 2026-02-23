@@ -36,8 +36,10 @@ body {
 /* ================= CAIXA PRINCIPAL ================= */
 .caixa-maior {
     width: 100%;
-    height: 600px;
+    height: auto;
     max-width: 480px;
+    max-height: 90dvh;
+    min-height: 50vh;
 
     padding: 20px;
     display: flex;
@@ -311,12 +313,13 @@ button:active {
 @media (max-width: 600px) {
 
     body {
+        overflow-y: hidden;
         padding: 10px;
     }
 
     .caixa-maior {
         padding: 16px;
-        border-radius: 20px;
+        border-radius: 10px;
     }
 
     .input-texto {
